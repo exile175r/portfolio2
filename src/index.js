@@ -2,7 +2,29 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+
+// Spline 관련 에러 억제 (iframe 내부 에러)
+window.addEventListener('error', (event) => {
+  if (event.message && (
+    event.message.includes('position') ||
+    event.message.includes('Spline') ||
+    event.message.includes('runtime.js')
+  )) {
+    event.preventDefault();
+    return false;
+  }
+}, true);
+
+// Unhandled promise rejection도 처리
+window.addEventListener('unhandledrejection', (event) => {
+  if (event.reason && (
+    event.reason.message && event.reason.message.includes('position') ||
+    event.reason.message && event.reason.message.includes('Spline')
+  )) {
+    event.preventDefault();
+    return false;
+  }
+});
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -10,8 +32,3 @@ root.render(
     <App />
   </React.StrictMode>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
