@@ -8,7 +8,7 @@ const Projects = memo(function Projects() {
       title: 'Idea Funding',
       description: 'Idea Funding은 창의적인 아이디어를 가진 창작자와 후원자를 연결하는 크라우드펀딩 플랫폼입니다. 사용자들은 다양한 프로젝트를 탐색하고, 관심 있는 프로젝트에 후원할 수 있으며, 커뮤니티를 통해 아이디어를 공유하고 소통할 수 있습니다.',
       link: 'https://exile175r.github.io/idea-funding',
-      image: '/image/ideaFunding.png'
+      image: `${process.env.PUBLIC_URL}/image/ideaFunding.png`
     },
     // {
     //   id: 2,
